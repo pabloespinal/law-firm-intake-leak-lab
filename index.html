@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Intake Leak Lab | Free Law Firm Intake Calculator</title>
+  <meta name="description" content="Model where law firm inquiries are lost between first contact and retained client.">
+  <style>
+    :root{--ink:#17221f;--paper:#f3efe5;--coral:#f06449;--mint:#dce7df;--line:rgba(23,34,31,.2)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,sans-serif}a{color:inherit}
+    nav{align-items:center;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;padding:18px 4vw}.mark{align-items:center;display:flex;font-size:14px;font-weight:700;gap:10px;text-decoration:none}.mark b{align-items:center;background:var(--ink);border-radius:50%;color:var(--paper);display:flex;font-size:10px;height:34px;justify-content:center;letter-spacing:.08em;width:34px}.navlink{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-decoration:none}
+    .hero{min-height:650px;padding:88px 4vw 70px}.eyebrow,.kicker{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}.hero h1{font-family:Georgia,serif;font-size:clamp(50px,7.5vw,112px);font-weight:500;letter-spacing:-.06em;line-height:.9;margin:36px 0 42px;max-width:1300px}.hero h1 em{color:var(--coral);font-weight:400}.lede{font-size:clamp(17px,1.6vw,23px);line-height:1.5;margin:0 0 44px auto;max-width:620px}.down{border-bottom:1px solid var(--ink);display:flex;font-weight:700;justify-content:space-between;margin-left:auto;padding:0 0 12px;text-decoration:none;width:min(100%,620px)}.down span{color:var(--coral);font-size:24px}
+    .evidence{background:var(--ink);color:var(--paper);display:grid;grid-template-columns:repeat(3,1fr)}.evidence>div{border-right:1px solid rgba(243,239,229,.2);min-height:230px;padding:40px 4vw}.evidence strong{color:var(--coral);display:block;font-family:Georgia,serif;font-size:clamp(56px,7vw,96px);font-weight:400;letter-spacing:-.06em}.evidence span{display:block;line-height:1.45;max-width:250px}.sources{border-top:1px solid rgba(243,239,229,.2);font-size:12px;grid-column:1/-1;line-height:1.6;margin:0;padding:18px 4vw 24px}
+    .calculator{background:var(--mint);padding:95px 4vw}.sectionhead{display:grid;gap:40px;grid-template-columns:1fr 2fr;margin-bottom:55px}.sectionhead h2,.sponsor h2{font-family:Georgia,serif;font-size:clamp(40px,5vw,72px);font-weight:500;letter-spacing:-.05em;line-height:.98;margin:0;max-width:900px}.calcgrid{border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr}.controls{border-right:1px solid var(--line);padding-right:4vw}.group{border-bottom:1px solid var(--line);padding:26px 0}.group h3{font-size:13px;margin:0 0 18px}.split{display:grid;gap:14px;grid-template-columns:1fr 1fr}.split h3{grid-column:1/-1}.field{display:flex;flex-direction:column;font-size:12px;gap:8px}.input{align-items:center;background:rgba(255,255,255,.58);border:1px solid transparent;display:flex;padding:0 13px}.input:focus-within{border-color:var(--coral)}input{background:transparent;border:0;color:var(--ink);font-family:Georgia,serif;font-size:29px;min-width:0;outline:0;padding:11px 0;width:100%}.input b{color:rgba(23,34,31,.55)}.hint{font-size:11px;line-height:1.5;margin:12px 0 0}
+    .result{background:var(--paper);margin:38px 0 0 4vw;padding:clamp(28px,4vw,56px);align-self:start;position:sticky;top:18px}.label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}.big{color:var(--coral);font-family:Georgia,serif;font-size:clamp(56px,6.6vw,94px);letter-spacing:-.06em;line-height:1;margin:28px 0 18px}.result>p{font-size:17px;line-height:1.55}.flow{align-items:center;border-bottom:1px solid var(--line);border-top:1px solid var(--line);display:grid;gap:8px;grid-template-columns:1fr auto 1fr auto 1fr;margin:32px 0;padding:20px 0}.flow div{display:flex;flex-direction:column;gap:7px}.flow span{font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}.flow b{font-size:21px}.flow small{color:var(--coral)}.formula{background:rgba(23,34,31,.06);font:11px/1.6 monospace;margin-bottom:28px;padding:12px}.button{align-items:center;background:var(--ink);color:var(--paper);display:flex;font-size:13px;font-weight:700;justify-content:space-between;padding:18px 20px;text-decoration:none}.button:hover{background:var(--coral)}
+    .method{padding:105px 4vw}.relay{border-left:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr)}.relay article{border-right:1px solid var(--line);padding:24px}.relay article>b{align-items:center;border:1px solid var(--line);border-radius:50%;display:flex;height:34px;justify-content:center;width:34px}.relay h3{font-family:Georgia,serif;font-size:31px;font-weight:500;margin:65px 0 17px}.relay p{font-size:14px;line-height:1.6}
+    .sponsor{background:var(--coral);display:grid;gap:60px;grid-template-columns:1.3fr 1fr;padding:95px 4vw}.sponsor p{font-size:15px;line-height:1.65}.sponsor .button{margin-top:28px}footer{background:var(--ink);color:var(--paper);display:flex;font-size:11px;justify-content:space-between;padding:28px 4vw}
+    @media(max-width:800px){.hero{min-height:600px}.evidence,.calcgrid,.sponsor{grid-template-columns:1fr}.evidence>div{border-bottom:1px solid rgba(243,239,229,.2);min-height:180px}.sectionhead{gap:20px;grid-template-columns:1fr}.controls{border-right:0;padding-right:0}.result{margin-left:0;position:static}.relay{grid-template-columns:1fr 1fr}}
+    @media(max-width:520px){.navlink{display:none}.hero{min-height:auto;padding-top:65px}.relay{grid-template-columns:1fr}.flow{gap:5px}.calculator,.method,.sponsor{padding-left:22px;padding-right:22px}}
+  </style>
+</head>
+<body>
+  <nav><a class="mark" href="#top"><b>ILL</b> Intake Leak Lab</a><a class="navlink" href="#method">Method, not magic</a></nav>
+  <section class="hero" id="top">
+    <div class="eyebrow">A free diagnostic for small law firms</div>
+    <h1>Your firm may not need<br>more leads. <em>It may need fewer leaks.</em></h1>
+    <p class="lede">Model what happens between a new inquiry and a retained client. No email gate. No invented industry average. Just your numbers and transparent math.</p>
+    <a class="down" href="#calculator">Run the numbers <span>↓</span></a>
+  </section>
+  <section class="evidence">
+    <div><strong>40%</strong><span>of firms answered a secret-shopper phone call</span></div>
+    <div><strong>33%</strong><span>responded to a shopper’s email inquiry</span></div>
+    <div><strong>27%</strong><span>of nearly 1,400 firms never answered an online lead</span></div>
+    <p class="sources">Published findings from <a target="_blank" rel="noopener" href="https://www.clio.com/guides/client-intake-legal-trends/">Clio’s 2024 secret-shopper study</a> and <a target="_blank" rel="noopener" href="https://hennessey.com/2024-law-firm-lead-form-response-time-study/">Hennessey Digital’s 2024 response study</a>. These are context, not inputs to the model below.</p>
+  </section>
+  <section class="calculator" id="calculator">
+    <div class="sectionhead"><span class="kicker">01 / Your pipeline</span><h2>Find the quiet gap between interest and instruction.</h2></div>
+    <div class="calcgrid">
+      <div class="controls">
+        <div class="group"><h3>Volume & value</h3><label class="field">New inquiries per month<span class="input"><input id="inq" type="number" min="0" value="60"></span></label><br><label class="field">Average value of a retained matter<span class="input"><input id="value" type="number" min="0" value="4500"><b>$</b></span></label></div>
+        <div class="group split"><h3>Response rate</h3><label class="field">Current<span class="input"><input id="cr" type="number" min="0" max="100" value="55"><b>%</b></span></label><label class="field">Target<span class="input"><input id="tr" type="number" min="0" max="100" value="75"><b>%</b></span></label></div>
+        <div class="group split"><h3>Responded inquiry → booked consultation</h3><label class="field">Current<span class="input"><input id="cb" type="number" min="0" max="100" value="30"><b>%</b></span></label><label class="field">Target<span class="input"><input id="tb" type="number" min="0" max="100" value="40"><b>%</b></span></label></div>
+        <div class="group"><h3>Consultation → retained client</h3><label class="field">Keep this rate unchanged<span class="input"><input id="ret" type="number" min="0" max="100" value="35"><b>%</b></span></label><p class="hint">This isolates the value of fixing response and booking—without assuming your lawyers suddenly close better.</p></div>
+      </div>
+      <aside class="result" aria-live="polite">
+        <div class="label">Modeled annual opportunity</div><div class="big" id="annual">$0</div>
+        <p>from approximately <b id="extraConsults">0</b> more consultations and <b id="extraClients">0</b> more retained clients per month.</p>
+        <div class="flow"><div><span>Inquiries</span><b id="fInq">60</b></div><i>→</i><div><span>Responded</span><b><i id="fromResp">33</i> <small>→ <i id="toResp">45</i></small></b></div><i>→</i><div><span>Consults</span><b><i id="fromCon">9.9</i> <small>→ <i id="toCon">18.0</i></small></b></div></div>
+        <div class="formula">inquiries × response rate × booking rate × retention rate × matter value</div>
+        <a class="button" target="_blank" rel="noopener" href="https://legalgrowthos.com/law-firm-intake-conversion-optimization/">See how to close the gaps <span>↗</span></a>
+      </aside>
+    </div>
+  </section>
+  <section class="method" id="method">
+    <div class="sectionhead"><span class="kicker">02 / The operating view</span><h2>A lead is not a win. It is the start of a relay.</h2></div>
+    <div class="relay"><article><b>1</b><h3>Capture</h3><p>Make every channel lead somewhere useful: a live answer, a short form, or an immediate booking path.</p></article><article><b>2</b><h3>Respond</h3><p>Measure the share of inquiries that receive a meaningful reply, not merely an automated receipt.</p></article><article><b>3</b><h3>Book</h3><p>Give qualified prospects one obvious next step and reduce the back-and-forth that creates drop-off.</p></article><article><b>4</b><h3>Follow through</h3><p>Track source, status, tasks, appointments, and outcome in one place so no inquiry becomes invisible.</p></article></div>
+  </section>
+  <section class="sponsor"><div><span class="kicker">Built in the open</span><h2>The calculator is free. The fix is operational.</h2></div><div><p>Intake Leak Lab is a public educational project sponsored by <a target="_blank" rel="noopener" href="https://legalgrowthos.com/">Legal Growth OS</a>, a connected website, booking, intake, lead CRM, Legal AI, and SEO/AEO platform for law firms.</p><p>The model is illustrative, uses only the numbers entered here, and is not a revenue forecast, legal advice, or a guarantee of clients.</p><a class="button" target="_blank" rel="noopener" href="https://legalgrowthos.com/">Explore Legal Growth OS <span>↗</span></a></div></section>
+  <footer><span>Intake Leak Lab © 2026</span><span>Useful math for better follow-through.</span></footer>
+  <script>
+    const ids=["inq","value","cr","tr","cb","tb","ret"];
+    const n=id=>Math.max(0,Number(document.getElementById(id).value)||0);
+    function calc(){
+      const inq=n("inq"),value=n("value"),cr=n("cr")/100,tr=n("tr")/100,cb=n("cb")/100,tb=n("tb")/100,ret=n("ret")/100;
+      const fromResp=inq*cr,toResp=inq*tr,fromCon=fromResp*cb,toCon=toResp*tb,extraCon=Math.max(0,toCon-fromCon),extraClients=Math.max(0,(toCon-fromCon)*ret),annual=extraClients*value*12;
+      document.getElementById("annual").textContent=new Intl.NumberFormat("en-US",{style:"currency",currency:"USD",maximumFractionDigits:0}).format(annual);
+      document.getElementById("extraConsults").textContent=extraCon.toFixed(1);document.getElementById("extraClients").textContent=extraClients.toFixed(1);document.getElementById("fInq").textContent=inq;document.getElementById("fromResp").textContent=fromResp.toFixed(0);document.getElementById("toResp").textContent=toResp.toFixed(0);document.getElementById("fromCon").textContent=fromCon.toFixed(1);document.getElementById("toCon").textContent=toCon.toFixed(1);
+    }
+    ids.forEach(id=>document.getElementById(id).addEventListener("input",calc));calc();
+  </script>
+</body>
+</html>
